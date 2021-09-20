@@ -1,6 +1,7 @@
 [master]
-192.168.88.220
+ubuntu-master ansible_host=192.168.88.220 ansible_port=1022
 
 [node]
-192.168.88.221
-192.168.88.222
+ubuntu-node-1 ansible_host=192.168.88.220 ansible_port=1122
+ubuntu-node-2 ansible_host=192.168.88.220 ansible_port=1222
+ubuntu-node-3 ansible_host=192.168.88.220 ansible_port=1322
