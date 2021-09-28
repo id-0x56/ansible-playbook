@@ -28,7 +28,7 @@ ansible-playbook -i inventory playbook-03-kubernetes.yml --user=ubuntu --ask-bec
 
 ### Ping
 ```
-ansible all -i inventory -m ping --user=ubuntu
+ansible all -i inventory -m ping --user=ubuntu --ask-pass
 ```
 
 ### Usage
