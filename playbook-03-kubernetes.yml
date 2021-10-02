@@ -68,3 +68,9 @@
           "storage-driver": "overlay2"
         }
         EOF
+
+    - name: Restart docker service
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: docker
