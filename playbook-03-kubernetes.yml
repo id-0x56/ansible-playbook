@@ -35,3 +35,36 @@
         name: kubectl
         state: present
         update_cache: yes
+
+    - name: Disable SWAP (1/2)
+      shell: |
+        swapoff -a
+
+    - name: Disable SWAP in fstab (2/2)
+      replace:
+        path: /etc/fstab
+        regexp: '^([^#].*?\sswap\s+sw\s+.*)$'
+        replace: '# \1'
+
+#    - name: Enable SWAP in fstab (1/2)
+#      replace:
+#        path: /etc/fstab
+#        regexp: '^# (.+?\sswap\s+sw\s+.*)$'
+#        replace: '\1'
+
+#    - name: Enable SWAP (2/2)
+#      shell: |
+#        swapon -a
+
+    - name: Configure docker daemon
+      shell: |
+        cat > /etc/docker/daemon.json << EOF
+        {
+          "exec-opts": ["native.cgroupdriver=systemd"],
+          "log-driver": "json-file",
+          "log-opts": {
+            "max-size": "100m"
+          },
+          "storage-driver": "overlay2"
+        }
+        EOF
