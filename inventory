@@ -6,5 +6,4 @@ ubuntu-node-1 ansible_host=192.168.88.222 ansible_port=22
 ubuntu-node-2 ansible_host=192.168.88.223 ansible_port=22
 
 [storage]
-ubuntu-storage ansible_host=192.168.88.225 ansible_port=22
-ubuntu ansible_host=192.168.88.140 ansible_port=22
+ubuntu-storage ansible_host=192.168.88.220 ansible_port=22
