@@ -25,6 +25,9 @@ ansible-playbook -i inventory playbook-02-default.yml --user=ubuntu --ask-become
 ```
 ansible-playbook -i inventory playbook-03-kubernetes.yml --user=ubuntu --ask-become-pass
 ```
+```
+ansible-playbook -i inventory playbook-04-php.yml --user=ubuntu --ask-become-pass
+```
 
 ### Ping
 ```

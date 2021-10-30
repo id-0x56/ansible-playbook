@@ -1,0 +1,47 @@
+---
+- hosts:
+    - storage
+
+  vars:
+    version: 8.0
+
+  vars_files:
+    - vars/default.yml
+
+  become: true
+
+  tasks:
+    - name: Add PHP repository
+      apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+
+    - name: Install PHP {{ version }}
+      apt:
+        name: php{{ version }}
+        state: present
+        update_cache: yes
+
+    - name: Install PHP extensions
+      apt:
+        name:
+          - php{{ version }}-curl
+          - php{{ version }}-mbstring
+          - php{{ version }}-mysql
+          - php{{ version }}-pgsql
+          - php{{ version }}-xml
+          - php{{ version }}-zip
+        state: present
+        update_cache: yes
+
+    - name: Add user "{{ user }}" to "www-data" group
+      user:
+        name: "{{ user }}"
+        groups: www-data
+        append: yes
+
+    - name: Install composer
+      shell: |
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+      args:
+        warn: false
